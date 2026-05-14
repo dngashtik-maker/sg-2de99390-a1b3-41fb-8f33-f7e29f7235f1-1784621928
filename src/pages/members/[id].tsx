@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Calendar, Users, Award } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Calendar, Users, Award, Edit } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -274,6 +274,15 @@ export default function MemberProfile() {
                       Member since {new Date(member.joinDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                     </span>
                   </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-border">
+                  <Link href={`/members/${member.id}/edit`}>
+                    <Button className="w-full font-sans text-sm">
+                      <Edit className="w-4 h-4 mr-2" />
+                      Edit Profile
+                    </Button>
+                  </Link>
                 </div>
               </Card>
             </div>
