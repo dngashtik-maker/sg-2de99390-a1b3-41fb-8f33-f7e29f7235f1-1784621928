@@ -20,17 +20,21 @@ const MOCK_MEMBERS: (Member & {
   {
     id: "1",
     name: "Sarah Chen",
-    role: "Executive Director",
+    credentials: "FCIArb",
+    role: "Commercial Arbitrator",
+    company: "Chen Dispute Resolution",
+    country: "Singapore",
+    primaryBranch: "Singapore Branch",
     category: "Staff",
-    email: "s.chen@directory.org",
-    phone: "+1-555-0101",
+    email: "s.chen@ciarb-branch.org",
+    phone: "+65-555-0101",
     photoUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
     joinDate: "2020-03-15",
     status: "Active",
     cpdPoints: 245,
-    bio: "Sarah brings over 15 years of nonprofit leadership experience. She specializes in organizational development, strategic planning, and community engagement. Prior to joining the organization, she led initiatives at several national nonprofits.",
-    committees: ["Executive Board", "Strategic Planning", "Finance"],
-    skills: ["Leadership", "Strategic Planning", "Fundraising", "Public Speaking"],
+    bio: "Fellow of CIArb with over 15 years of experience in international commercial arbitration...",
+    committees: ["Practice & Standards", "Regional Development", "Education & Training"],
+    skills: ["International Arbitration", "Commercial Disputes", "Technology Law", "ADR"],
   },
   {
     id: "2",
@@ -207,7 +211,11 @@ export default function EditMember() {
 
   const [formData, setFormData] = useState({
     name: member?.name || "",
+    credentials: member?.credentials || "",
     role: member?.role || "",
+    company: member?.company || "",
+    country: member?.country || "",
+    primaryBranch: member?.primaryBranch || "",
     category: member?.category || "Staff",
     email: member?.email || "",
     phone: member?.phone || "",
@@ -305,8 +313,24 @@ export default function EditMember() {
                 </div>
 
                 <div className="space-y-2">
+                  <Label htmlFor="credentials" className="font-sans text-sm font-semibold">
+                    Credentials *
+                  </Label>
+                  <Input
+                    id="credentials"
+                    value={formData.credentials}
+                    onChange={(e) => setFormData({ ...formData, credentials: e.target.value })}
+                    className="font-sans"
+                    placeholder="FCIArb, MCIArb, ACIArb"
+                  />
+                  <p className="text-xs text-muted-foreground font-sans">
+                    CIArb membership grade
+                  </p>
+                </div>
+
+                <div className="space-y-2">
                   <Label htmlFor="role" className="font-sans text-sm font-semibold">
-                    Role *
+                    Role/Title *
                   </Label>
                   <Input
                     id="role"
@@ -317,6 +341,43 @@ export default function EditMember() {
                   {errors.role && (
                     <p className="text-xs text-destructive font-sans">{errors.role}</p>
                   )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="company" className="font-sans text-sm font-semibold">
+                    Company/Organization
+                  </Label>
+                  <Input
+                    id="company"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className="font-sans"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="country" className="font-sans text-sm font-semibold">
+                    Country
+                  </Label>
+                  <Input
+                    id="country"
+                    value={formData.country}
+                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                    className="font-sans"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="primaryBranch" className="font-sans text-sm font-semibold">
+                    Primary Branch
+                  </Label>
+                  <Input
+                    id="primaryBranch"
+                    value={formData.primaryBranch}
+                    onChange={(e) => setFormData({ ...formData, primaryBranch: e.target.value })}
+                    className="font-sans"
+                    placeholder="e.g., London Branch, Singapore Branch"
+                  />
                 </div>
 
                 <div className="space-y-2">
