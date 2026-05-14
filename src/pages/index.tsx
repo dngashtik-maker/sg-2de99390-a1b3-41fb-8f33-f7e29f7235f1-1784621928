@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Search, Users, TrendingUp } from "lucide-react";
+import { Search, Users, TrendingUp, Settings } from "lucide-react";
 import Link from "next/link";
 import { SEO } from "@/components/SEO";
 import { MemberCard, type Member } from "@/components/MemberCard";
@@ -187,12 +187,20 @@ export default function Home() {
                   MEMBER_DIRECTORY
                 </h1>
               </div>
-              <Link href="/leaderboard">
-                <Button variant="outline" size="sm" className="font-sans">
-                  <TrendingUp className="w-4 h-4 mr-2" />
-                  CPD Leaderboard
-                </Button>
-              </Link>
+              <div className="flex gap-3">
+                <Link href="/admin/dashboard">
+                  <Button variant="outline" size="sm" className="font-sans">
+                    <Settings className="w-4 h-4 mr-2" />
+                    Admin
+                  </Button>
+                </Link>
+                <Link href="/leaderboard">
+                  <Button variant="outline" size="sm" className="font-sans">
+                    <TrendingUp className="w-4 h-4 mr-2" />
+                    Leaderboard
+                  </Button>
+                </Link>
+              </div>
             </div>
             <p className="font-mono text-sm text-muted-foreground">
               Database of active organization members

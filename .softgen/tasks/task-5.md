@@ -13,13 +13,13 @@ position: 5
 Admin dashboard page for organization administrators to manage members, view statistics, and access quick actions. Provides overview of member data, CPD points distribution, and fast access to member management functions.
 
 ## Checklist
-- [ ] Create admin dashboard page: pages/admin/dashboard.tsx
-- [ ] Display key statistics: total members, active members, average CPD points
-- [ ] Show recent member activity or updates
-- [ ] Display CPD points distribution chart/stats
-- [ ] Add quick action buttons for adding/managing members
-- [ ] Show top performers list
-- [ ] Add navigation link to dashboard from directory
+- [x] Create admin dashboard page: pages/admin/dashboard.tsx
+- [x] Display key statistics: total members, active members, average CPD points
+- [x] Show recent member activity or updates
+- [x] Display CPD points distribution chart/stats
+- [x] Add quick action buttons for adding/managing members
+- [x] Show top performers list
+- [x] Add navigation link to dashboard from directory
 
 ## Acceptance
 - Dashboard displays comprehensive member statistics
