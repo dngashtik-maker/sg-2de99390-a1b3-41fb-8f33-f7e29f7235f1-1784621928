@@ -7,7 +7,7 @@ import {
   Users, 
   TrendingUp, 
   Award, 
-  UserPlus, 
+  Upload, 
   Settings,
   Activity,
   BarChart3,
@@ -471,11 +471,13 @@ export default function AdminDashboard() {
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Button className="font-sans h-auto py-4 flex-col gap-2" disabled>
-                <UserPlus className="w-5 h-5" />
-                <span>Add New Member</span>
-                <span className="text-xs font-normal opacity-70">Coming soon</span>
-              </Button>
+              <Link href="/admin/import" className="block">
+                <Button className="w-full font-sans h-auto py-4 flex-col gap-2">
+                  <Upload className="w-5 h-5" />
+                  <span>Import Members</span>
+                  <span className="text-xs font-normal opacity-70">CSV or XML</span>
+                </Button>
+              </Link>
               <Link href="/" className="block">
                 <Button
                   variant="outline"
