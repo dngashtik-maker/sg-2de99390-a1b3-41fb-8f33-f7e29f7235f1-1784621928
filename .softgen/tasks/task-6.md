@@ -1,6 +1,6 @@
 ---
 title: Member Data Import
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [admin, import, csv, xml]
