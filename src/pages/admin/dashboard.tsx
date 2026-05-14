@@ -1,0 +1,450 @@
+import Link from "next/link";
+import { SEO } from "@/components/SEO";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Users, 
+  TrendingUp, 
+  Award, 
+  UserPlus, 
+  Settings,
+  Activity,
+  BarChart3,
+  Trophy
+} from "lucide-react";
+import type { Member } from "@/components/MemberCard";
+
+const MOCK_MEMBERS: Member[] = [
+  {
+    id: "1",
+    name: "Sarah Chen",
+    role: "Executive Director",
+    category: "Staff",
+    email: "s.chen@directory.org",
+    phone: "+1-555-0101",
+    photoUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+    joinDate: "2020-03-15",
+    status: "Active",
+    cpdPoints: 245,
+  },
+  {
+    id: "2",
+    name: "Marcus Rodriguez",
+    role: "Board President",
+    category: "Board",
+    email: "m.rodriguez@directory.org",
+    phone: "+1-555-0102",
+    photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+    joinDate: "2019-01-10",
+    status: "Active",
+    cpdPoints: 312,
+  },
+  {
+    id: "3",
+    name: "Priya Patel",
+    role: "Program Manager",
+    category: "Staff",
+    email: "p.patel@directory.org",
+    phone: "+1-555-0103",
+    photoUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop",
+    joinDate: "2021-06-20",
+    status: "Active",
+    cpdPoints: 178,
+  },
+  {
+    id: "4",
+    name: "James Wilson",
+    role: "Volunteer Coordinator",
+    category: "Volunteer",
+    email: "j.wilson@directory.org",
+    phone: "+1-555-0104",
+    photoUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop",
+    joinDate: "2022-02-14",
+    status: "Active",
+    cpdPoints: 96,
+  },
+  {
+    id: "5",
+    name: "Elena Kowalski",
+    role: "Communications Director",
+    category: "Staff",
+    email: "e.kowalski@directory.org",
+    phone: "+1-555-0105",
+    photoUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop",
+    joinDate: "2020-09-01",
+    status: "Active",
+    cpdPoints: 201,
+  },
+  {
+    id: "6",
+    name: "David Okonkwo",
+    role: "Treasurer",
+    category: "Board",
+    email: "d.okonkwo@directory.org",
+    phone: "+1-555-0106",
+    photoUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
+    joinDate: "2019-05-30",
+    status: "Active",
+    cpdPoints: 287,
+  },
+  {
+    id: "7",
+    name: "Aisha Mohammed",
+    role: "Outreach Coordinator",
+    category: "Volunteer",
+    email: "a.mohammed@directory.org",
+    phone: "+1-555-0107",
+    photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop",
+    joinDate: "2023-01-12",
+    status: "Active",
+    cpdPoints: 54,
+  },
+  {
+    id: "8",
+    name: "Robert Zhang",
+    role: "Secretary",
+    category: "Board",
+    email: "r.zhang@directory.org",
+    phone: "+1-555-0108",
+    photoUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
+    joinDate: "2018-11-22",
+    status: "Active",
+    cpdPoints: 356,
+  },
+  {
+    id: "9",
+    name: "Linda Nguyen",
+    role: "Development Manager",
+    category: "Staff",
+    email: "l.nguyen@directory.org",
+    phone: "+1-555-0109",
+    photoUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop",
+    joinDate: "2021-03-08",
+    status: "Active",
+    cpdPoints: 189,
+  },
+  {
+    id: "10",
+    name: "Carlos Mendez",
+    role: "Events Coordinator",
+    category: "Volunteer",
+    email: "c.mendez@directory.org",
+    phone: "+1-555-0110",
+    photoUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop",
+    joinDate: "2022-08-19",
+    status: "Active",
+    cpdPoints: 123,
+  },
+  {
+    id: "11",
+    name: "Fatima Al-Rashid",
+    role: "Finance Director",
+    category: "Staff",
+    email: "f.alrashid@directory.org",
+    phone: "+1-555-0111",
+    photoUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop",
+    joinDate: "2020-07-15",
+    status: "Active",
+    cpdPoints: 234,
+  },
+  {
+    id: "12",
+    name: "Thomas Anderson",
+    role: "Board Member",
+    category: "Board",
+    email: "t.anderson@directory.org",
+    phone: "+1-555-0112",
+    photoUrl: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&h=200&fit=crop",
+    joinDate: "2019-09-05",
+    status: "Active",
+    cpdPoints: 298,
+  },
+];
+
+export default function AdminDashboard() {
+  const totalMembers = MOCK_MEMBERS.length;
+  const activeMembers = MOCK_MEMBERS.filter((m) => m.status === "Active").length;
+  const totalCPDPoints = MOCK_MEMBERS.reduce((sum, m) => sum + m.cpdPoints, 0);
+  const averageCPDPoints = Math.round(totalCPDPoints / totalMembers);
+
+  const categoryBreakdown = {
+    Staff: MOCK_MEMBERS.filter((m) => m.category === "Staff").length,
+    Board: MOCK_MEMBERS.filter((m) => m.category === "Board").length,
+    Volunteer: MOCK_MEMBERS.filter((m) => m.category === "Volunteer").length,
+  };
+
+  const topPerformers = [...MOCK_MEMBERS]
+    .sort((a, b) => b.cpdPoints - a.cpdPoints)
+    .slice(0, 5);
+
+  return (
+    <>
+      <SEO
+        title="Admin Dashboard | Member Directory"
+        description="Admin dashboard for member management and statistics"
+      />
+      <div className="min-h-screen bg-background">
+        <div className="container py-8">
+          <header className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Settings className="w-8 h-8 text-primary" />
+                <h1 className="font-mono font-bold text-3xl text-foreground">
+                  ADMIN_DASHBOARD
+                </h1>
+              </div>
+              <div className="flex gap-3">
+                <Link href="/leaderboard">
+                  <Button variant="outline" size="sm" className="font-sans">
+                    <TrendingUp className="w-4 h-4 mr-2" />
+                    Leaderboard
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <Button variant="outline" size="sm" className="font-sans">
+                    <Users className="w-4 h-4 mr-2" />
+                    Directory
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <p className="font-mono text-sm text-muted-foreground">
+              Member management and analytics overview
+            </p>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-sm bg-primary/10 flex items-center justify-center">
+                  <Users className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                    Total Members
+                  </p>
+                  <p className="font-mono font-bold text-2xl text-foreground tabular-nums">
+                    {totalMembers}
+                  </p>
+                </div>
+              </div>
+              <p className="font-sans text-xs text-muted-foreground">
+                {activeMembers} active
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-sm bg-accent/10 flex items-center justify-center">
+                  <Activity className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                    Avg CPD Points
+                  </p>
+                  <p className="font-mono font-bold text-2xl text-foreground tabular-nums">
+                    {averageCPDPoints}
+                  </p>
+                </div>
+              </div>
+              <p className="font-sans text-xs text-muted-foreground">
+                Per active member
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-sm bg-accent/10 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                    Total CPD Points
+                  </p>
+                  <p className="font-mono font-bold text-2xl text-foreground tabular-nums">
+                    {totalCPDPoints.toLocaleString()}
+                  </p>
+                </div>
+              </div>
+              <p className="font-sans text-xs text-muted-foreground">
+                Across all members
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-sm bg-primary/10 flex items-center justify-center">
+                  <BarChart3 className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                    Categories
+                  </p>
+                  <p className="font-mono font-bold text-2xl text-foreground tabular-nums">
+                    3
+                  </p>
+                </div>
+              </div>
+              <p className="font-sans text-xs text-muted-foreground">
+                Staff, Board, Volunteer
+              </p>
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <Card className="p-6 lg:col-span-2">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <Trophy className="w-5 h-5 text-accent" />
+                  <h2 className="font-mono font-bold text-lg text-foreground">
+                    TOP_PERFORMERS
+                  </h2>
+                </div>
+                <Link href="/leaderboard">
+                  <Button variant="ghost" size="sm" className="font-sans text-xs">
+                    View All
+                  </Button>
+                </Link>
+              </div>
+              <div className="space-y-3">
+                {topPerformers.map((member, index) => (
+                  <Link
+                    key={member.id}
+                    href={`/members/${member.id}`}
+                    className="block group"
+                  >
+                    <div className="flex items-center gap-4 p-3 rounded-sm hover:bg-muted/50 transition-colors">
+                      <div className="w-8 h-8 flex items-center justify-center font-mono font-bold text-sm text-muted-foreground">
+                        #{index + 1}
+                      </div>
+                      <div className="w-12 h-12 rounded-sm overflow-hidden bg-muted flex-shrink-0">
+                        <img
+                          src={member.photoUrl}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-sans font-semibold text-sm text-foreground truncate group-hover:text-accent transition-colors">
+                          {member.name}
+                        </p>
+                        <p className="font-sans text-xs text-muted-foreground truncate">
+                          {member.role}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Badge variant="secondary" className="font-mono text-xs">
+                          {member.category}
+                        </Badge>
+                        <div className="flex items-center gap-1 text-accent">
+                          <Award className="w-4 h-4" />
+                          <span className="font-mono font-bold text-sm tabular-nums">
+                            {member.cpdPoints}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-2 mb-6">
+                <Users className="w-5 h-5 text-primary" />
+                <h2 className="font-mono font-bold text-lg text-foreground">
+                  CATEGORY_BREAKDOWN
+                </h2>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-mono text-sm text-foreground">Staff</span>
+                    <span className="font-mono font-bold text-sm text-foreground tabular-nums">
+                      {categoryBreakdown.Staff}
+                    </span>
+                  </div>
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary rounded-full"
+                      style={{
+                        width: `${(categoryBreakdown.Staff / totalMembers) * 100}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-mono text-sm text-foreground">Board</span>
+                    <span className="font-mono font-bold text-sm text-foreground tabular-nums">
+                      {categoryBreakdown.Board}
+                    </span>
+                  </div>
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-accent rounded-full"
+                      style={{
+                        width: `${(categoryBreakdown.Board / totalMembers) * 100}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-mono text-sm text-foreground">Volunteer</span>
+                    <span className="font-mono font-bold text-sm text-foreground tabular-nums">
+                      {categoryBreakdown.Volunteer}
+                    </span>
+                  </div>
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary/60 rounded-full"
+                      style={{
+                        width: `${(categoryBreakdown.Volunteer / totalMembers) * 100}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          <Card className="p-6">
+            <div className="flex items-center gap-2 mb-6">
+              <Settings className="w-5 h-5 text-primary" />
+              <h2 className="font-mono font-bold text-lg text-foreground">
+                QUICK_ACTIONS
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Button className="font-sans h-auto py-4 flex-col gap-2" disabled>
+                <UserPlus className="w-5 h-5" />
+                <span>Add New Member</span>
+                <span className="text-xs font-normal opacity-70">Coming soon</span>
+              </Button>
+              <Link href="/" className="block">
+                <Button
+                  variant="outline"
+                  className="w-full font-sans h-auto py-4 flex-col gap-2"
+                >
+                  <Users className="w-5 h-5" />
+                  <span>View All Members</span>
+                </Button>
+              </Link>
+              <Link href="/leaderboard" className="block">
+                <Button
+                  variant="outline"
+                  className="w-full font-sans h-auto py-4 flex-col gap-2"
+                >
+                  <Trophy className="w-5 h-5" />
+                  <span>CPD Leaderboard</span>
+                </Button>
+              </Link>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </>
+  );
+}
