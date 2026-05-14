@@ -1,6 +1,6 @@
 ---
 title: CPD Points Leaderboard
-status: in_progress
+status: done
 priority: medium
 type: feature
 tags: [leaderboard, ranking, cpd]
