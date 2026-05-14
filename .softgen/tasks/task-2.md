@@ -1,6 +1,6 @@
 ---
 title: Member Profile Pages
-status: in_progress
+status: done
 priority: medium
 type: feature
 tags: [profile, routing, detail-view]

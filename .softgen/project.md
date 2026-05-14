@@ -16,14 +16,13 @@ Colors (HSL):
 - `--border: 215 15% 85%` (steel grey)
 
 Typography:
-- Headings: IBM Plex Mono (600, 700)
-- Body: Space Mono (400, 700)
-- Data: tabular-nums applied throughout
+- Headings: Poppins (600, 700)
+- Body: Poppins (400, 700)
 
-Style: Tight grid, generous line-height, monospace-driven, data-table aesthetic, minimal decoration, functional color usage.
+Style: Tight grid, generous line-height, data-table aesthetic, minimal decoration, functional color usage.
 
 ## Features
 - Member directory with grid view
 - Individual member profile pages
 - Search and filter functionality
-- Member cards with photo, name, role, contact
+- Member cards with photo, name, role
