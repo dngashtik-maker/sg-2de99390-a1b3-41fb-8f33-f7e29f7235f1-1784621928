@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Calendar, Users, Award, Edit } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Calendar, Users, Award, Edit, TrendingUp } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +22,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
     joinDate: "2020-03-15",
     status: "Active",
+    cpdPoints: 245,
     bio: "Sarah brings over 15 years of nonprofit leadership experience. She specializes in organizational development, strategic planning, and community engagement. Prior to joining the organization, she led initiatives at several national nonprofits.",
     committees: ["Executive Board", "Strategic Planning", "Finance"],
     skills: ["Leadership", "Strategic Planning", "Fundraising", "Public Speaking"],
@@ -36,6 +37,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
     joinDate: "2019-01-10",
     status: "Active",
+    cpdPoints: 312,
     bio: "Marcus is a corporate attorney with expertise in nonprofit governance. He has served on multiple boards and brings valuable legal and strategic insights to the organization.",
     committees: ["Executive Board", "Governance", "Legal Affairs"],
     skills: ["Legal Expertise", "Governance", "Risk Management", "Policy Development"],
@@ -50,6 +52,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop",
     joinDate: "2021-06-20",
     status: "Active",
+    cpdPoints: 178,
     bio: "Priya manages our flagship programs and ensures quality delivery to our community members. She has a background in social work and program evaluation.",
     committees: ["Program Committee", "Community Outreach"],
     skills: ["Program Management", "Data Analysis", "Grant Writing", "Community Engagement"],
@@ -64,6 +67,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
     joinDate: "2022-02-14",
     status: "Active",
+    cpdPoints: 96,
     bio: "James coordinates our volunteer programs and manages volunteer recruitment, training, and retention. He is passionate about building strong volunteer communities.",
     committees: ["Volunteer Committee", "Events"],
     skills: ["Volunteer Management", "Training & Development", "Event Planning", "Communication"],
@@ -78,6 +82,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
     joinDate: "2020-09-01",
     status: "Active",
+    cpdPoints: 201,
     bio: "Elena leads our communications strategy across all channels. She has expertise in digital marketing, public relations, and brand development.",
     committees: ["Marketing Committee", "Digital Strategy"],
     skills: ["Digital Marketing", "Content Strategy", "Social Media", "Brand Management"],
@@ -92,6 +97,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
     joinDate: "2019-05-30",
     status: "Active",
+    cpdPoints: 287,
     bio: "David is a certified public accountant who oversees the organization's financial health. He ensures fiscal responsibility and transparent financial reporting.",
     committees: ["Finance Committee", "Audit Committee"],
     skills: ["Financial Management", "Accounting", "Budget Planning", "Compliance"],
@@ -106,6 +112,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
     joinDate: "2023-01-12",
     status: "Active",
+    cpdPoints: 54,
     bio: "Aisha coordinates community outreach initiatives and builds partnerships with local organizations. She is dedicated to expanding our reach and impact.",
     committees: ["Community Outreach", "Partnership Development"],
     skills: ["Community Organizing", "Partnership Building", "Cultural Competency", "Advocacy"],
@@ -120,6 +127,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
     joinDate: "2018-11-22",
     status: "Active",
+    cpdPoints: 356,
     bio: "Robert maintains official records and ensures proper documentation of all board activities. He has extensive experience in nonprofit governance and compliance.",
     committees: ["Executive Board", "Governance", "Records Management"],
     skills: ["Documentation", "Governance", "Meeting Management", "Policy Implementation"],
@@ -134,6 +142,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop",
     joinDate: "2021-03-08",
     status: "Active",
+    cpdPoints: 189,
     bio: "Linda leads fundraising efforts and donor relations. She has successfully secured major grants and built lasting relationships with donors and funders.",
     committees: ["Development Committee", "Fundraising Events"],
     skills: ["Fundraising", "Donor Relations", "Grant Writing", "Event Management"],
@@ -148,6 +157,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
     joinDate: "2022-08-19",
     status: "Active",
+    cpdPoints: 123,
     bio: "Carlos plans and executes our signature events and fundraisers. His attention to detail and creativity make every event memorable.",
     committees: ["Events", "Volunteer Committee"],
     skills: ["Event Planning", "Logistics", "Vendor Management", "Budget Management"],
@@ -162,6 +172,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop",
     joinDate: "2020-07-15",
     status: "Active",
+    cpdPoints: 234,
     bio: "Fatima manages day-to-day financial operations and works closely with the treasurer. She ensures efficient financial processes and accurate reporting.",
     committees: ["Finance Committee"],
     skills: ["Financial Operations", "Payroll", "Reporting", "Process Improvement"],
@@ -176,6 +187,7 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=400&fit=crop",
     joinDate: "2019-09-05",
     status: "Active",
+    cpdPoints: 298,
     bio: "Thomas is a technology executive who advises on digital transformation and IT strategy. He helps the organization leverage technology for greater impact.",
     committees: ["Technology Committee", "Strategic Planning"],
     skills: ["Technology Strategy", "Digital Transformation", "Systems Architecture", "Innovation"],
@@ -283,6 +295,23 @@ export default function MemberProfile() {
                       Edit Profile
                     </Button>
                   </Link>
+                </div>
+              </Card>
+
+              <Card className="p-6 mt-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <TrendingUp className="w-5 h-5 text-accent" />
+                  <h2 className="font-mono font-bold text-sm text-foreground">
+                    CPD Points
+                  </h2>
+                </div>
+                <div className="text-center py-4">
+                  <p className="font-mono font-bold text-5xl text-foreground tabular-nums">
+                    {member.cpdPoints}
+                  </p>
+                  <p className="font-mono text-xs text-muted-foreground mt-2">
+                    Continuing Professional Development
+                  </p>
                 </div>
               </Card>
             </div>
