@@ -13,16 +13,16 @@ position: 1
 Main directory page showing all members in a scannable grid format. Includes search bar, filter options, and member cards. Industrial-utilitarian design with monospace typography and data-grid layout.
 
 ## Checklist
-- [ ] Set up design system: Import IBM Plex Mono and Space Mono fonts in globals.css
-- [ ] Configure color tokens in globals.css (graphite, steel, amber palette)
-- [ ] Register fonts and custom tokens in tailwind.config.ts
-- [ ] Create MemberCard component: displays member photo, name, role, email, phone in grid format
-- [ ] Create member directory page (index.tsx): grid of 12-15 member cards with mock data
-- [ ] Add search bar component at top of directory
-- [ ] Add filter buttons for member categories (All, Staff, Board, Volunteers)
-- [ ] Implement basic search functionality (filter by name)
-- [ ] Implement category filter functionality
-- [ ] Add stats header showing total member count
+- [x] Set up design system: Import IBM Plex Mono and Space Mono fonts in globals.css
+- [x] Configure color tokens in globals.css (graphite, steel, amber palette)
+- [x] Register fonts and custom tokens in tailwind.config.ts
+- [x] Create MemberCard component: displays member photo, name, role, email, phone in grid format
+- [x] Create member directory page (index.tsx): grid of 12-15 member cards with mock data
+- [x] Add search bar component at top of directory
+- [x] Add filter buttons for member categories (All, Staff, Board, Volunteers)
+- [x] Implement basic search functionality (filter by name)
+- [x] Implement category filter functionality
+- [x] Add stats header showing total member count
 
 ## Acceptance
 - Directory displays members in a scannable grid
