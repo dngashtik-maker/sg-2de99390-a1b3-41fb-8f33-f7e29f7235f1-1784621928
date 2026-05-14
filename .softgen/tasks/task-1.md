@@ -1,6 +1,6 @@
 ---
 title: Member Directory Page
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [directory, ui, core]

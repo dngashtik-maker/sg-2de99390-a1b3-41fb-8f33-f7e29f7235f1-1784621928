@@ -1,6 +1,6 @@
 ---
 title: Member Profile Pages
-status: todo
+status: in_progress
 priority: medium
 type: feature
 tags: [profile, routing, detail-view]
@@ -13,13 +13,13 @@ position: 2
 Individual member profile pages accessed by clicking member cards. Shows full member details including bio, skills, committees, and contact information. Uses dynamic routing with [id] parameter.
 
 ## Checklist
-- [ ] Create dynamic route: pages/members/[id].tsx
-- [ ] Design profile layout with photo, full details, bio section
-- [ ] Add back button to return to directory
-- [ ] Display member committees/groups
-- [ ] Display member skills or areas of expertise
-- [ ] Show join date and member status
-- [ ] Link member cards in directory to profile pages
+- [x] Create dynamic route: pages/members/[id].tsx
+- [x] Design profile layout with photo, full details, bio section
+- [x] Add back button to return to directory
+- [x] Display member committees/groups
+- [x] Display member skills or areas of expertise
+- [x] Show join date and member status
+- [x] Link member cards in directory to profile pages
 
 ## Acceptance
 - Clicking a member card navigates to their profile page

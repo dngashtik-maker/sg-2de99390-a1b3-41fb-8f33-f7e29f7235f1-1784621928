@@ -11,8 +11,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Space Mono", "ui-monospace", "monospace"],
-        mono: ["IBM Plex Mono", "ui-monospace", "monospace"],
+        sans: ["Poppins", "system-ui", "sans-serif"],
+        mono: ["Poppins", "system-ui", "sans-serif"],
       },
       colors: {
         background: "hsl(var(--background))",
