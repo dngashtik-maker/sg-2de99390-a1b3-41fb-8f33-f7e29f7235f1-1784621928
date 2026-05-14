@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { MapPin, Building2 } from "lucide-react";
 
 export interface Member {
   id: string;
   name: string;
+  credentials: string;
   role: string;
+  company: string;
+  country: string;
+  primaryBranch: string;
   category: "Staff" | "Board" | "Volunteer";
   email: string;
   phone: string;
@@ -22,9 +27,9 @@ interface MemberCardProps {
 export function MemberCard({ member }: MemberCardProps) {
   return (
     <Link href={`/members/${member.id}`}>
-      <Card className="group hover:border-accent transition-colors cursor-pointer p-4 bg-card">
-        <div className="flex items-start gap-3">
-          <div className="w-16 h-16 rounded-sm overflow-hidden bg-muted flex-shrink-0">
+      <Card className="group hover:border-accent transition-colors cursor-pointer p-5 bg-card">
+        <div className="flex gap-4">
+          <div className="w-20 h-20 rounded-sm overflow-hidden bg-muted flex-shrink-0">
             <img
               src={member.photoUrl}
               alt={member.name}
@@ -32,18 +37,25 @@ export function MemberCard({ member }: MemberCardProps) {
             />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-sans font-semibold text-sm text-foreground truncate group-hover:text-accent transition-colors">
-              {member.name}
-            </h3>
-            <p className="font-sans text-xs text-muted-foreground mt-0.5 truncate">
+            <div className="flex items-baseline gap-2 mb-1">
+              <h3 className="font-sans font-bold text-base text-foreground truncate group-hover:text-accent transition-colors">
+                {member.name}
+              </h3>
+              <span className="font-sans font-semibold text-xs text-accent flex-shrink-0">
+                {member.credentials}
+              </span>
+            </div>
+            <p className="font-sans text-sm text-foreground mb-1 truncate">
               {member.role}
             </p>
-            <Badge
-              variant="secondary"
-              className="mt-2 text-xs font-sans font-normal"
-            >
-              {member.category}
-            </Badge>
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
+              <Building2 className="w-3.5 h-3.5 flex-shrink-0" />
+              <span className="truncate">{member.company}</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+              <span className="truncate">{member.country} • {member.primaryBranch}</span>
+            </div>
           </div>
         </div>
       </Card>
