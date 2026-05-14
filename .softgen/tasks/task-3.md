@@ -1,6 +1,6 @@
 ---
 title: Member Edit Form
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [admin, form, edit]
