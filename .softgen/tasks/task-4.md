@@ -13,13 +13,13 @@ position: 4
 A leaderboard page displaying all members ranked by their total CPD points in descending order. Shows rank, member photo, name, role, and points. Accessible from main directory navigation.
 
 ## Checklist
-- [ ] Create leaderboard page: pages/leaderboard.tsx
-- [ ] Display members sorted by CPD points (highest first)
-- [ ] Show rank number for each member
-- [ ] Display member photo, name, role, and CPD points
-- [ ] Add top 3 visual distinction (gold, silver, bronze styling)
-- [ ] Make member entries clickable to profile pages
-- [ ] Add navigation link in main directory header
+- [x] Create leaderboard page: pages/leaderboard.tsx
+- [x] Display members sorted by CPD points (highest first)
+- [x] Show rank number for each member
+- [x] Display member photo, name, role, and CPD points
+- [x] Add top 3 visual distinction (gold, silver, bronze styling)
+- [x] Make member entries clickable to profile pages
+- [x] Add navigation link in main directory header
 
 ## Acceptance
 - Members are displayed in correct rank order by CPD points

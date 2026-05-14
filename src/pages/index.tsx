@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-import { Search, Users } from "lucide-react";
+import { Search, Users, TrendingUp } from "lucide-react";
+import Link from "next/link";
 import { SEO } from "@/components/SEO";
 import { MemberCard, type Member } from "@/components/MemberCard";
 import { Input } from "@/components/ui/input";
@@ -179,11 +180,19 @@ export default function Home() {
       <div className="min-h-screen bg-background">
         <div className="container py-8">
           <header className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Users className="w-8 h-8 text-primary" />
-              <h1 className="font-mono font-bold text-3xl text-foreground">
-                MEMBER_DIRECTORY
-              </h1>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Users className="w-8 h-8 text-primary" />
+                <h1 className="font-mono font-bold text-3xl text-foreground">
+                  MEMBER_DIRECTORY
+                </h1>
+              </div>
+              <Link href="/leaderboard">
+                <Button variant="outline" size="sm" className="font-sans">
+                  <TrendingUp className="w-4 h-4 mr-2" />
+                  CPD Leaderboard
+                </Button>
+              </Link>
             </div>
             <p className="font-mono text-sm text-muted-foreground">
               Database of active organization members
