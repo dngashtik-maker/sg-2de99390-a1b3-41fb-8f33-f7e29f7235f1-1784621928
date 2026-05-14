@@ -16,6 +16,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
     joinDate: "2020-03-15",
     status: "Active",
+    cpdPoints: 245,
   },
   {
     id: "2",
@@ -27,6 +28,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
     joinDate: "2019-01-10",
     status: "Active",
+    cpdPoints: 312,
   },
   {
     id: "3",
@@ -38,6 +40,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop",
     joinDate: "2021-06-20",
     status: "Active",
+    cpdPoints: 178,
   },
   {
     id: "4",
@@ -49,6 +52,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop",
     joinDate: "2022-02-14",
     status: "Active",
+    cpdPoints: 96,
   },
   {
     id: "5",
@@ -60,6 +64,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop",
     joinDate: "2020-09-01",
     status: "Active",
+    cpdPoints: 201,
   },
   {
     id: "6",
@@ -71,6 +76,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
     joinDate: "2019-05-30",
     status: "Active",
+    cpdPoints: 287,
   },
   {
     id: "7",
@@ -82,6 +88,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop",
     joinDate: "2023-01-12",
     status: "Active",
+    cpdPoints: 54,
   },
   {
     id: "8",
@@ -93,6 +100,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
     joinDate: "2018-11-22",
     status: "Active",
+    cpdPoints: 356,
   },
   {
     id: "9",
@@ -104,6 +112,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop",
     joinDate: "2021-03-08",
     status: "Active",
+    cpdPoints: 189,
   },
   {
     id: "10",
@@ -115,6 +124,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop",
     joinDate: "2022-08-19",
     status: "Active",
+    cpdPoints: 123,
   },
   {
     id: "11",
@@ -126,6 +136,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop",
     joinDate: "2020-07-15",
     status: "Active",
+    cpdPoints: 234,
   },
   {
     id: "12",
@@ -137,6 +148,7 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&h=200&fit=crop",
     joinDate: "2019-09-05",
     status: "Active",
+    cpdPoints: 298,
   },
 ];
 
