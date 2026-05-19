@@ -13,13 +13,13 @@ position: 7
 Upgrade the directory filtering system to match the CIArb member directory. This replaces the simple category buttons with multiple dropdown filters for professional data points.
 
 ## Checklist
-- [ ] Add Grade/Credentials filter dropdown (FCIArb, MCIArb, ACIArb)
-- [ ] Add Country filter dropdown
-- [ ] Add Primary Branch filter dropdown
-- [ ] Update search bar to search across name, company, and role
-- [ ] Update the `index.tsx` layout to accommodate the new filter sidebar or filter bar
-- [ ] Ensure all filters work together (intersection/AND logic)
-- [ ] Add a "Clear Filters" button
+- [x] Add Grade/Credentials filter dropdown (FCIArb, MCIArb, ACIArb)
+- [x] Add Country filter dropdown
+- [x] Add Primary Branch filter dropdown
+- [x] Update search bar to search across name, company, and role
+- [x] Update the `index.tsx` layout to accommodate the new filter sidebar or filter bar
+- [x] Ensure all filters work together (intersection/AND logic)
+- [x] Add a "Clear Filters" button
 
 ## Acceptance
 - Users can filter the directory by multiple CIArb-specific criteria simultaneously

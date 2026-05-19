@@ -5,6 +5,7 @@ import { SEO } from "@/components/SEO";
 import { MemberCard, type Member } from "@/components/MemberCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const MOCK_MEMBERS: Member[] = [
   {
@@ -201,23 +202,39 @@ const MOCK_MEMBERS: Member[] = [
   },
 ];
 
-const CATEGORIES = ["All", "Staff", "Board", "Volunteer"] as const;
-type Category = typeof CATEGORIES[number];
+const GRADES = ["All", "FCIArb", "MCIArb", "ACIArb"];
+const COUNTRIES = ["All", ...Array.from(new Set(MOCK_MEMBERS.map(m => m.country))).sort()];
+const BRANCHES = ["All", ...Array.from(new Set(MOCK_MEMBERS.map(m => m.primaryBranch))).sort()];
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<Category>("All");
+  const [activeGrade, setActiveGrade] = useState("All");
+  const [activeCountry, setActiveCountry] = useState("All");
+  const [activeBranch, setActiveBranch] = useState("All");
 
   const filteredMembers = useMemo(() => {
     return MOCK_MEMBERS.filter((member) => {
-      const matchesSearch = member.name
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      const matchesCategory =
-        activeCategory === "All" || member.category === activeCategory;
-      return matchesSearch && matchesCategory;
+      const searchLower = searchQuery.toLowerCase();
+      const matchesSearch = 
+        searchQuery === "" ||
+        member.name.toLowerCase().includes(searchLower) ||
+        member.role.toLowerCase().includes(searchLower) ||
+        member.company.toLowerCase().includes(searchLower);
+      
+      const matchesGrade = activeGrade === "All" || member.credentials === activeGrade;
+      const matchesCountry = activeCountry === "All" || member.country === activeCountry;
+      const matchesBranch = activeBranch === "All" || member.primaryBranch === activeBranch;
+      
+      return matchesSearch && matchesGrade && matchesCountry && matchesBranch;
     });
-  }, [searchQuery, activeCategory]);
+  }, [searchQuery, activeGrade, activeCountry, activeBranch]);
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setActiveGrade("All");
+    setActiveCountry("All");
+    setActiveBranch("All");
+  };
 
   return (
     <>
@@ -257,38 +274,75 @@ export default function Home() {
             </div>
           </header>
 
-          <div className="mb-6 space-y-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search members by name..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 font-mono text-sm"
-              />
+          <div className="mb-6 space-y-4 bg-card border border-border rounded-lg p-5">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="font-sans font-semibold text-base">Advanced Search</h2>
+              <Button variant="ghost" size="sm" onClick={clearFilters} className="h-8 px-2 text-xs font-sans text-muted-foreground hover:text-foreground">
+                Clear Filters
+              </Button>
             </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-sans font-medium text-muted-foreground">Keyword Search</label>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder="Name, role, company..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-9 font-sans text-sm h-10"
+                  />
+                </div>
+              </div>
 
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-mono text-xs text-muted-foreground uppercase">
-                Filter:
-              </span>
-              {CATEGORIES.map((category) => (
-                <Button
-                  key={category}
-                  variant={activeCategory === category ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveCategory(category)}
-                  className="font-mono text-xs"
-                >
-                  {category}
-                </Button>
-              ))}
+              <div className="space-y-1.5">
+                <label className="text-xs font-sans font-medium text-muted-foreground">Member Grade</label>
+                <Select value={activeGrade} onValueChange={setActiveGrade}>
+                  <SelectTrigger className="h-10 font-sans text-sm">
+                    <SelectValue placeholder="All Grades" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {GRADES.map(grade => (
+                      <SelectItem key={grade} value={grade} className="font-sans text-sm">{grade === "All" ? "All Grades" : grade}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-sans font-medium text-muted-foreground">Country</label>
+                <Select value={activeCountry} onValueChange={setActiveCountry}>
+                  <SelectTrigger className="h-10 font-sans text-sm">
+                    <SelectValue placeholder="All Countries" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {COUNTRIES.map(country => (
+                      <SelectItem key={country} value={country} className="font-sans text-sm">{country === "All" ? "All Countries" : country}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-sans font-medium text-muted-foreground">Primary Branch</label>
+                <Select value={activeBranch} onValueChange={setActiveBranch}>
+                  <SelectTrigger className="h-10 font-sans text-sm">
+                    <SelectValue placeholder="All Branches" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {BRANCHES.map(branch => (
+                      <SelectItem key={branch} value={branch} className="font-sans text-sm">{branch === "All" ? "All Branches" : branch}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
 
           <div className="mb-4">
-            <p className="font-mono text-sm text-muted-foreground tabular-nums">
+            <p className="font-sans text-sm text-muted-foreground tabular-nums">
               Showing {filteredMembers.length} of {MOCK_MEMBERS.length} members
             </p>
           </div>
