@@ -1,6 +1,6 @@
 ---
 title: Advanced Directory Filters (CIArb Style)
-status: in_progress
+status: done
 priority: medium
 type: feature
 tags: [directory, filters, search]
