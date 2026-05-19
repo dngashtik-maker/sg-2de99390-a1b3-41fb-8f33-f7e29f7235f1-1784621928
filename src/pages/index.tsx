@@ -239,21 +239,52 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Member Directory"
-        description="Browse and search our organization members"
+        title="Member Directory - CIArb Kenya Branch"
+        description="Connect with qualified arbitrators, mediators, and ADR practitioners across Kenya and East Africa. Search our directory of CIArb members."
       />
       <div className="min-h-screen bg-background">
+        <div className="relative bg-primary overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src="/generated/nairobi-skyline.png"
+              alt="Nairobi skyline"
+              className="w-full h-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-primary"></div>
+          </div>
+          <div className="relative container py-16 md:py-20">
+            <div className="max-w-3xl">
+              <h1 className="font-sans font-bold text-4xl md:text-5xl text-white mb-4">
+                CIArb Kenya Branch Member Directory
+              </h1>
+              <p className="font-sans text-lg md:text-xl text-white/90 leading-relaxed mb-6">
+                Connect with qualified arbitrators, mediators, and alternative dispute resolution practitioners across Kenya and the East African Community. Our directory features CIArb members committed to excellence in dispute resolution practice.
+              </p>
+              <div className="flex flex-wrap gap-6 text-sm font-sans text-white/80">
+                <div className="flex items-center gap-2">
+                  <Users className="w-5 h-5" />
+                  <span>{MOCK_MEMBERS.length} Active Members</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5" />
+                  <span>CPD Tracking</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="container py-8">
           <header className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <Users className="w-8 h-8 text-primary" />
                 <div>
-                  <h1 className="font-sans font-bold text-3xl text-foreground">
-                    Member Directory
-                  </h1>
+                  <h2 className="font-sans font-bold text-2xl text-foreground">
+                    Search Members
+                  </h2>
                   <p className="font-sans text-sm text-muted-foreground mt-1">
-                    CIArb Branch Members
+                    Filter by grade, country, or branch
                   </p>
                 </div>
               </div>
