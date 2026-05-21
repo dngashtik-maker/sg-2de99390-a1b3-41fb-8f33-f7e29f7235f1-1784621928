@@ -57,8 +57,14 @@ export default function ImportMembers() {
         photoUrl: values[headers.indexOf("photourl")] || values[headers.indexOf("photo_url")] || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
         joinDate: values[headers.indexOf("joindate")] || values[headers.indexOf("join_date")] || new Date().toISOString().split("T")[0],
         status: (values[headers.indexOf("status")] as "Active" | "Inactive") || "Active",
-        cpdPoints2024: parseInt(values[headers.indexOf("cpdpoints2024")] || values[headers.indexOf("cpd_points_2024")] || "0"),
-        cpdPoints2025: parseInt(values[headers.indexOf("cpdpoints2025")] || values[headers.indexOf("cpd_points_2025")] || "0"),
+        cpdPoints: (() => {
+          const trackedYears = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("ciarb_tracked_years") || '["2024", "2025"]') : ["2024", "2025"];
+          const pts: Record<string, number> = {};
+          trackedYears.forEach((year: string) => {
+            pts[year] = parseInt(values[headers.indexOf(`cpdpoints${year}`)] || values[headers.indexOf(`cpd_points_${year}`)] || "0");
+          });
+          return pts;
+        })(),
         errors: [],
         warnings: [],
       };
@@ -108,8 +114,14 @@ export default function ImportMembers() {
         photoUrl: getValue("photoUrl") || getValue("photo_url") || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
         joinDate: getValue("joinDate") || getValue("join_date") || new Date().toISOString().split("T")[0],
         status: (getValue("status") as "Active" | "Inactive") || "Active",
-        cpdPoints2024: parseInt(getValue("cpdPoints2024") || getValue("cpd_points_2024") || "0"),
-        cpdPoints2025: parseInt(getValue("cpdPoints2025") || getValue("cpd_points_2025") || "0"),
+        cpdPoints: (() => {
+          const trackedYears = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("ciarb_tracked_years") || '["2024", "2025"]') : ["2024", "2025"];
+          const pts: Record<string, number> = {};
+          trackedYears.forEach((year: string) => {
+            pts[year] = parseInt(getValue(`cpdPoints${year}`) || getValue(`cpd_points_${year}`) || "0");
+          });
+          return pts;
+        })(),
         errors: [],
         warnings: [],
       };
@@ -154,12 +166,16 @@ export default function ImportMembers() {
   const downloadTemplate = (format: "csv" | "xml") => {
     let content = "";
     let filename = "";
+    const trackedYears: string[] = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("ciarb_tracked_years") || '["2024", "2025"]') : ["2024", "2025"];
 
     if (format === "csv") {
-      content = "name,credentials,role,company,country,primaryBranch,email,phone,category,photoUrl,joinDate,status,cpdPoints2024,cpdPoints2025\n";
-      content += "John Doe,FCIArb,Commercial Arbitrator,Doe Chambers,United Kingdom,London Branch,j.doe@example.com,+44-555-0000,Staff,https://example.com/photo.jpg,2024-01-01,Active,100,50\n";
+      const cpdHeaders = trackedYears.map(y => `cpdPoints${y}`).join(",");
+      const cpdValues = trackedYears.map((_, i) => i === 0 ? "100" : (i === 1 ? "50" : "0")).join(",");
+      content = `name,credentials,role,company,country,primaryBranch,email,phone,category,photoUrl,joinDate,status,${cpdHeaders}\n`;
+      content += `John Doe,FCIArb,Commercial Arbitrator,Doe Chambers,United Kingdom,London Branch,j.doe@example.com,+44-555-0000,Staff,https://example.com/photo.jpg,2024-01-01,Active,${cpdValues}\n`;
       filename = "member-import-template.csv";
     } else {
+      const xmlCpdPoints = trackedYears.map((y, i) => `    <cpdPoints${y}>${i === 0 ? "100" : (i === 1 ? "50" : "0")}</cpdPoints${y}>`).join("\n");
       content = `<?xml version="1.0" encoding="UTF-8"?>
 <members>
   <member>
@@ -175,8 +191,7 @@ export default function ImportMembers() {
     <photoUrl>https://example.com/photo.jpg</photoUrl>
     <joinDate>2024-01-01</joinDate>
     <status>Active</status>
-    <cpdPoints2024>100</cpdPoints2024>
-    <cpdPoints2025>50</cpdPoints2025>
+${xmlCpdPoints}
   </member>
 </members>`;
       filename = "member-import-template.xml";
