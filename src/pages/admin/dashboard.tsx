@@ -11,7 +11,8 @@ import {
   Settings,
   Activity,
   BarChart3,
-  Trophy
+  Trophy,
+  Calendar
 } from "lucide-react";
 import type { Member } from "@/components/MemberCard";
 
@@ -486,12 +487,19 @@ export default function AdminDashboard() {
                 QUICK_ACTIONS
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Link href="/admin/import" className="block">
                 <Button className="w-full font-sans h-auto py-4 flex-col gap-2">
                   <Upload className="w-5 h-5" />
                   <span>Import Members</span>
                   <span className="text-xs font-normal opacity-70">CSV or XML</span>
+                </Button>
+              </Link>
+              <Link href="/admin/cpd-settings" className="block">
+                <Button className="w-full font-sans h-auto py-4 flex-col gap-2">
+                  <Calendar className="w-5 h-5" />
+                  <span>CPD Years</span>
+                  <span className="text-xs font-normal opacity-70">Manage tracking</span>
                 </Button>
               </Link>
               <Link href="/" className="block">

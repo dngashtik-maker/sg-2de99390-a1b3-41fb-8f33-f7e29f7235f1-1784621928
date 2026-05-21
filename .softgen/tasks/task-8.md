@@ -17,13 +17,13 @@ Allow admins to dynamically add CPD tracking fields for new years (2026, 2027, e
 - Default to showing the two most recent years prominently
 
 ## Checklist
+- [x] Create admin CPD settings page for adding new years
+- [x] Add navigation to CPD settings from admin dashboard
 - [ ] Update Member interface to use dynamic year structure `cpdPoints: { [year: string]: number }`
-- [ ] Create admin CPD settings page for adding new years
 - [ ] Update profile page to display all years dynamically
 - [ ] Update leaderboard to calculate totals from all years
 - [ ] Update edit form to show inputs for all tracked years
 - [ ] Update import functionality to support dynamic years
-- [ ] Add navigation to CPD settings from admin dashboard
 
 ## Acceptance
 - Admin can add new CPD year fields via settings interface
