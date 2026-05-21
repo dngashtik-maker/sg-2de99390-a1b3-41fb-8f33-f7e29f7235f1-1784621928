@@ -57,7 +57,8 @@ export default function ImportMembers() {
         photoUrl: values[headers.indexOf("photourl")] || values[headers.indexOf("photo_url")] || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
         joinDate: values[headers.indexOf("joindate")] || values[headers.indexOf("join_date")] || new Date().toISOString().split("T")[0],
         status: (values[headers.indexOf("status")] as "Active" | "Inactive") || "Active",
-        cpdPoints: parseInt(values[headers.indexOf("cpdpoints")] || values[headers.indexOf("cpd_points")] || "0"),
+        cpdPoints2024: parseInt(values[headers.indexOf("cpdpoints2024")] || values[headers.indexOf("cpd_points_2024")] || "0"),
+        cpdPoints2025: parseInt(values[headers.indexOf("cpdpoints2025")] || values[headers.indexOf("cpd_points_2025")] || "0"),
         errors: [],
         warnings: [],
       };
@@ -107,7 +108,8 @@ export default function ImportMembers() {
         photoUrl: getValue("photoUrl") || getValue("photo_url") || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
         joinDate: getValue("joinDate") || getValue("join_date") || new Date().toISOString().split("T")[0],
         status: (getValue("status") as "Active" | "Inactive") || "Active",
-        cpdPoints: parseInt(getValue("cpdPoints") || getValue("cpd_points") || "0"),
+        cpdPoints2024: parseInt(getValue("cpdPoints2024") || getValue("cpd_points_2024") || "0"),
+        cpdPoints2025: parseInt(getValue("cpdPoints2025") || getValue("cpd_points_2025") || "0"),
         errors: [],
         warnings: [],
       };
@@ -154,8 +156,8 @@ export default function ImportMembers() {
     let filename = "";
 
     if (format === "csv") {
-      content = "name,credentials,role,company,country,primaryBranch,email,phone,category,photoUrl,joinDate,status,cpdPoints\n";
-      content += "John Doe,FCIArb,Commercial Arbitrator,Doe Chambers,United Kingdom,London Branch,j.doe@example.com,+44-555-0000,Staff,https://example.com/photo.jpg,2024-01-01,Active,150\n";
+      content = "name,credentials,role,company,country,primaryBranch,email,phone,category,photoUrl,joinDate,status,cpdPoints2024,cpdPoints2025\n";
+      content += "John Doe,FCIArb,Commercial Arbitrator,Doe Chambers,United Kingdom,London Branch,j.doe@example.com,+44-555-0000,Staff,https://example.com/photo.jpg,2024-01-01,Active,100,50\n";
       filename = "member-import-template.csv";
     } else {
       content = `<?xml version="1.0" encoding="UTF-8"?>
@@ -173,7 +175,8 @@ export default function ImportMembers() {
     <photoUrl>https://example.com/photo.jpg</photoUrl>
     <joinDate>2024-01-01</joinDate>
     <status>Active</status>
-    <cpdPoints>150</cpdPoints>
+    <cpdPoints2024>100</cpdPoints2024>
+    <cpdPoints2025>50</cpdPoints2025>
   </member>
 </members>`;
       filename = "member-import-template.xml";
