@@ -30,7 +30,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
     joinDate: "2020-03-15",
     status: "Active",
-    cpdPoints: 245,
+    cpdPoints2024: 147,
+    cpdPoints2025: 98,
   },
   {
     id: "2",
@@ -46,7 +47,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
     joinDate: "2019-01-10",
     status: "Active",
-    cpdPoints: 312,
+    cpdPoints2024: 187,
+    cpdPoints2025: 125,
   },
   {
     id: "3",
@@ -62,7 +64,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop",
     joinDate: "2021-06-20",
     status: "Active",
-    cpdPoints: 178,
+    cpdPoints2024: 107,
+    cpdPoints2025: 71,
   },
   {
     id: "4",
@@ -78,7 +81,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop",
     joinDate: "2022-02-14",
     status: "Active",
-    cpdPoints: 96,
+    cpdPoints2024: 58,
+    cpdPoints2025: 38,
   },
   {
     id: "5",
@@ -94,7 +98,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop",
     joinDate: "2020-09-01",
     status: "Active",
-    cpdPoints: 201,
+    cpdPoints2024: 121,
+    cpdPoints2025: 80,
   },
   {
     id: "6",
@@ -110,7 +115,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
     joinDate: "2019-05-30",
     status: "Active",
-    cpdPoints: 287,
+    cpdPoints2024: 172,
+    cpdPoints2025: 115,
   },
   {
     id: "7",
@@ -126,7 +132,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop",
     joinDate: "2023-01-12",
     status: "Active",
-    cpdPoints: 54,
+    cpdPoints2024: 32,
+    cpdPoints2025: 22,
   },
   {
     id: "8",
@@ -142,7 +149,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
     joinDate: "2018-11-22",
     status: "Active",
-    cpdPoints: 356,
+    cpdPoints2024: 214,
+    cpdPoints2025: 142,
   },
   {
     id: "9",
@@ -158,7 +166,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop",
     joinDate: "2021-03-08",
     status: "Active",
-    cpdPoints: 189,
+    cpdPoints2024: 113,
+    cpdPoints2025: 76,
   },
   {
     id: "10",
@@ -174,7 +183,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop",
     joinDate: "2022-08-19",
     status: "Active",
-    cpdPoints: 123,
+    cpdPoints2024: 74,
+    cpdPoints2025: 49,
   },
   {
     id: "11",
@@ -190,7 +200,8 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop",
     joinDate: "2020-07-15",
     status: "Active",
-    cpdPoints: 234,
+    cpdPoints2024: 140,
+    cpdPoints2025: 94,
   },
   {
     id: "12",
@@ -206,14 +217,15 @@ const MOCK_MEMBERS: Member[] = [
     photoUrl: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&h=200&fit=crop",
     joinDate: "2019-09-05",
     status: "Active",
-    cpdPoints: 298,
+    cpdPoints2024: 179,
+    cpdPoints2025: 119,
   },
 ];
 
 export default function AdminDashboard() {
   const totalMembers = MOCK_MEMBERS.length;
   const activeMembers = MOCK_MEMBERS.filter((m) => m.status === "Active").length;
-  const totalCPDPoints = MOCK_MEMBERS.reduce((sum, m) => sum + m.cpdPoints, 0);
+  const totalCPDPoints = MOCK_MEMBERS.reduce((sum, m) => sum + m.cpdPoints2024 + m.cpdPoints2025, 0);
   const averageCPDPoints = Math.round(totalCPDPoints / totalMembers);
 
   const categoryBreakdown = {
@@ -223,7 +235,11 @@ export default function AdminDashboard() {
   };
 
   const topPerformers = [...MOCK_MEMBERS]
-    .sort((a, b) => b.cpdPoints - a.cpdPoints)
+    .sort((a, b) => {
+      const totalA = a.cpdPoints2024 + a.cpdPoints2025;
+      const totalB = b.cpdPoints2024 + b.cpdPoints2025;
+      return totalB - totalA;
+    })
     .slice(0, 5);
 
   return (
@@ -393,7 +409,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center gap-1 text-accent">
                           <Award className="w-4 h-4" />
                           <span className="font-mono font-bold text-sm tabular-nums">
-                            {member.cpdPoints}
+                            {member.cpdPoints2024 + member.cpdPoints2025}
                           </span>
                         </div>
                       </div>

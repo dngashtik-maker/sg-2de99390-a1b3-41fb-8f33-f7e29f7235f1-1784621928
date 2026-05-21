@@ -31,7 +31,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
     joinDate: "2020-03-15",
     status: "Active",
-    cpdPoints: 245,
+    cpdPoints2024: 147,
+    cpdPoints2025: 98,
     bio: "Fellow of CIArb with over 15 years of experience in international commercial arbitration...",
     committees: ["Practice & Standards", "Regional Development", "Education & Training"],
     skills: ["International Arbitration", "Commercial Disputes", "Technology Law", "ADR"],
@@ -50,7 +51,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
     joinDate: "2019-01-10",
     status: "Active",
-    cpdPoints: 312,
+    cpdPoints2024: 187,
+    cpdPoints2025: 125,
     bio: "Member of CIArb specializing in construction and engineering disputes across the Middle East region. Marcus has extensive experience in FIDIC contracts and infrastructure projects, serving as both arbitrator and counsel in high-value construction arbitrations.",
     committees: ["Branch Council", "Construction Disputes", "Middle East Practice"],
     skills: ["Construction Arbitration", "Engineering Disputes", "FIDIC Contracts", "Infrastructure"],
@@ -69,7 +71,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop",
     joinDate: "2021-06-20",
     status: "Active",
-    cpdPoints: 178,
+    cpdPoints2024: 107,
+    cpdPoints2025: 71,
     bio: "Associate of CIArb practicing international commercial law with focus on dispute resolution. Priya represents clients in cross-border commercial disputes and has developed expertise in Indian arbitration law and practice under the Arbitration and Conciliation Act.",
     committees: ["Young Members Group", "South Asia Practice", "Diversity & Inclusion"],
     skills: ["Commercial Law", "Cross-border Disputes", "Indian Arbitration", "Mediation"],
@@ -88,7 +91,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
     joinDate: "2022-02-14",
     status: "Active",
-    cpdPoints: 96,
+    cpdPoints2024: 58,
+    cpdPoints2025: 38,
     bio: "Member of CIArb specializing in maritime and shipping arbitration. James handles disputes arising from charterparties, bills of lading, and marine insurance. He is accredited by the London Maritime Arbitrators Association (LMAA).",
     committees: ["Maritime & Shipping", "Young Practitioners"],
     skills: ["Maritime Arbitration", "Shipping Law", "Charterparty Disputes", "Marine Insurance"],
@@ -107,7 +111,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
     joinDate: "2020-09-01",
     status: "Active",
-    cpdPoints: 201,
+    cpdPoints2024: 121,
+    cpdPoints2025: 80,
     bio: "Fellow of CIArb with expertise in energy and natural resources disputes. Elena has acted as arbitrator and counsel in disputes involving oil and gas, mining, and renewable energy projects. She is particularly experienced in UNCITRAL arbitrations.",
     committees: ["Energy & Resources", "Regional Committee", "Women in Arbitration"],
     skills: ["Energy Disputes", "Mining Arbitration", "Oil & Gas", "UNCITRAL Rules"],
@@ -126,7 +131,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
     joinDate: "2019-05-30",
     status: "Active",
-    cpdPoints: 287,
+    cpdPoints2024: 172,
+    cpdPoints2025: 115,
     bio: "Member of CIArb specializing in banking and finance disputes. David has extensive experience in resolving disputes arising from loan agreements, securities transactions, and financial derivatives. He serves on the board of the West Africa Branch.",
     committees: ["Branch Council", "Banking & Finance", "Africa Practice"],
     skills: ["Banking Disputes", "Finance Arbitration", "Securities Law", "Derivatives"],
@@ -145,7 +151,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
     joinDate: "2023-01-12",
     status: "Active",
-    cpdPoints: 54,
+    cpdPoints2024: 32,
+    cpdPoints2025: 22,
     bio: "Associate of CIArb practicing commercial mediation in East Africa. Aisha facilitates resolution of commercial disputes through mediation and has completed CIArb's mediation training. She is building a practice focused on cross-border commercial mediation.",
     committees: ["Mediation", "East Africa Development", "Community Outreach"],
     skills: ["Commercial Mediation", "Conflict Resolution", "Cross-cultural Communication", "Facilitation"],
@@ -164,7 +171,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
     joinDate: "2018-11-22",
     status: "Active",
-    cpdPoints: 356,
+    cpdPoints2024: 214,
+    cpdPoints2025: 142,
     bio: "Fellow of CIArb with specialized expertise in intellectual property and technology disputes. Robert regularly acts as arbitrator in IP, software licensing, and technology transfer disputes. He is recognized as a leading practitioner in tech-related arbitration in Asia.",
     committees: ["Branch Council", "IP & Technology", "Asia-Pacific Practice"],
     skills: ["IP Arbitration", "Technology Disputes", "Software Licensing", "Patent Law"],
@@ -183,7 +191,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop",
     joinDate: "2021-03-08",
     status: "Active",
-    cpdPoints: 189,
+    cpdPoints2024: 113,
+    cpdPoints2025: 76,
     bio: "Member of CIArb specializing in employment and workplace disputes. Linda serves as arbitrator and mediator in employment matters, including wrongful dismissal, discrimination, and workplace harassment cases. She is committed to accessible dispute resolution.",
     committees: ["Employment & Labor", "Mediation", "Education & Training"],
     skills: ["Employment Arbitration", "Workplace Mediation", "Labor Law", "Human Rights"],
@@ -202,7 +211,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
     joinDate: "2022-08-19",
     status: "Active",
-    cpdPoints: 123,
+    cpdPoints2024: 74,
+    cpdPoints2025: 49,
     bio: "Associate of CIArb developing expertise in sports arbitration. Carlos handles disputes involving athletes, clubs, and sports federations. He has completed specialized training in sports law and arbitration and aspires to serve on the Court of Arbitration for Sport.",
     committees: ["Sports Law", "Young Members Group", "European Practice"],
     skills: ["Sports Arbitration", "Athletes' Rights", "Sports Governance", "Doping Disputes"],
@@ -221,7 +231,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop",
     joinDate: "2020-07-15",
     status: "Active",
-    cpdPoints: 234,
+    cpdPoints2024: 140,
+    cpdPoints2025: 94,
     bio: "Fellow of CIArb specializing in Islamic finance and Shari'ah-compliant dispute resolution. Fatima has extensive experience resolving disputes arising from sukuk, murabaha, and other Islamic financial instruments. She combines expertise in Islamic law with modern arbitration practice.",
     committees: ["Islamic Finance", "Shari'ah Compliance", "Middle East Practice"],
     skills: ["Islamic Finance", "Shari'ah Law", "Sukuk Disputes", "Commercial Arbitration"],
@@ -240,7 +251,8 @@ const MOCK_MEMBERS: (Member & {
     photoUrl: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=400&fit=crop",
     joinDate: "2019-09-05",
     status: "Active",
-    cpdPoints: 298,
+    cpdPoints2024: 179,
+    cpdPoints2025: 119,
     bio: "Member of CIArb with expertise in international trade and investment arbitration. Thomas has acted in disputes under bilateral investment treaties (BITs) and trade agreements. He serves on the board of the North America Branch and contributes to policy development.",
     committees: ["Branch Council", "International Trade", "Investment Arbitration"],
     skills: ["Trade Arbitration", "Investment Disputes", "BIT Claims", "WTO Law"],
@@ -267,7 +279,8 @@ export default function EditMember() {
     photoUrl: member?.photoUrl || "",
     joinDate: member?.joinDate || "",
     status: member?.status || "Active",
-    cpdPoints: member?.cpdPoints?.toString() || "0",
+    cpdPoints2024: member?.cpdPoints2024?.toString() || "0",
+    cpdPoints2025: member?.cpdPoints2025?.toString() || "0",
     skills: member?.skills?.join(", ") || "",
     committees: member?.committees?.join(", ") || "",
   });
@@ -524,15 +537,30 @@ export default function EditMember() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="cpdPoints" className="font-sans text-sm font-semibold">
-                    CPD Points
+                  <Label htmlFor="cpdPoints2024" className="font-sans text-sm font-semibold">
+                    CPD Points 2024
                   </Label>
                   <Input
-                    id="cpdPoints"
+                    id="cpdPoints2024"
                     type="number"
                     min="0"
-                    value={formData.cpdPoints}
-                    onChange={(e) => setFormData({ ...formData, cpdPoints: e.target.value })}
+                    value={formData.cpdPoints2024}
+                    onChange={(e) => setFormData({ ...formData, cpdPoints2024: e.target.value })}
+                    className="font-sans"
+                    placeholder="0"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="cpdPoints2025" className="font-sans text-sm font-semibold">
+                    CPD Points 2025
+                  </Label>
+                  <Input
+                    id="cpdPoints2025"
+                    type="number"
+                    min="0"
+                    value={formData.cpdPoints2025}
+                    onChange={(e) => setFormData({ ...formData, cpdPoints2025: e.target.value })}
                     className="font-sans"
                     placeholder="0"
                   />
