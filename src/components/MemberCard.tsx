@@ -17,8 +17,7 @@ export interface Member {
   photoUrl: string;
   joinDate: string;
   status: "Active" | "Inactive";
-  cpdPoints2024: number;
-  cpdPoints2025: number;
+  cpdPoints: Record<string, number>;
 }
 
 interface MemberCardProps {
