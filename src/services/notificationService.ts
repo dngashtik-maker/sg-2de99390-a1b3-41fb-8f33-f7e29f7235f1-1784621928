@@ -24,7 +24,7 @@ export const notificationService = {
       .order("created_at", { ascending: false });
 
     if (error) throw error;
-    return data || [];
+    return (data as any[]) as Notification[];
   },
 
   /**
@@ -99,7 +99,7 @@ export const notificationService = {
           table: "notifications",
         },
         (payload) => {
-          callback(payload.new as Notification);
+          callback(payload.new as unknown as Notification);
         }
       )
       .subscribe();
