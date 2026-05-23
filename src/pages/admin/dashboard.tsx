@@ -12,8 +12,10 @@ import {
   Activity,
   BarChart3,
   Trophy,
-  Calendar
+  Calendar,
+  Download
 } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import type { Member } from "@/components/MemberCard";
 
 const MOCK_MEMBERS: Member[] = [
@@ -232,6 +234,60 @@ export default function AdminDashboard() {
       return totalB - totalA;
     })
     .slice(0, 5);
+
+  const exportFullDirectory = () => {
+    const trackedYears = JSON.parse(localStorage.getItem("ciarb_tracked_years") || '["2024", "2025"]');
+    const cpdHeaders = trackedYears.map((y: string) => `CPD_${y}`).join(",");
+    
+    let csv = `Name,Credentials,Role,Company,Country,Primary Branch,Category,Email,Phone,Status,Join Date,${cpdHeaders},Total CPD\n`;
+    
+    MOCK_MEMBERS.forEach((member) => {
+      const cpdValues = trackedYears.map((y: string) => member.cpdPoints[y] || 0).join(",");
+      const totalCPD = Object.values(member.cpdPoints).reduce((s, v) => s + v, 0);
+      
+      csv += `"${member.name}","${member.credentials}","${member.role}","${member.company}","${member.country}","${member.primaryBranch}","${member.category}","${member.email}","${member.phone}","${member.status}","${member.joinDate}",${cpdValues},${totalCPD}\n`;
+    });
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `member-directory-full-${new Date().toISOString().split("T")[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
+
+  const exportCPDReport = () => {
+    const trackedYears = JSON.parse(localStorage.getItem("ciarb_tracked_years") || '["2024", "2025"]');
+    const cpdHeaders = trackedYears.map((y: string) => `CPD_${y}`).join(",");
+    
+    let csv = `Rank,Name,Credentials,Category,${cpdHeaders},Total CPD,Status\n`;
+    
+    const rankedMembers = [...MOCK_MEMBERS].sort((a, b) => {
+      const totalA = Object.values(a.cpdPoints).reduce((s, v) => s + v, 0);
+      const totalB = Object.values(b.cpdPoints).reduce((s, v) => s + v, 0);
+      return totalB - totalA;
+    });
+
+    rankedMembers.forEach((member, index) => {
+      const cpdValues = trackedYears.map((y: string) => member.cpdPoints[y] || 0).join(",");
+      const totalCPD = Object.values(member.cpdPoints).reduce((s, v) => s + v, 0);
+      
+      csv += `${index + 1},"${member.name}","${member.credentials}","${member.category}",${cpdValues},${totalCPD},"${member.status}"\n`;
+    });
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `cpd-report-${new Date().toISOString().split("T")[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
 
   return (
     <>
@@ -477,7 +533,7 @@ export default function AdminDashboard() {
                 QUICK_ACTIONS
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
               <Link href="/admin/import" className="block">
                 <Button className="w-full font-sans h-auto py-4 flex-col gap-2">
                   <Upload className="w-5 h-5" />
@@ -492,6 +548,25 @@ export default function AdminDashboard() {
                   <span className="text-xs font-normal opacity-70">Manage tracking</span>
                 </Button>
               </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button className="w-full font-sans h-auto py-4 flex-col gap-2 bg-accent hover:bg-accent/90">
+                    <Download className="w-5 h-5" />
+                    <span>Export Data</span>
+                    <span className="text-xs font-normal opacity-70">CSV Reports</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="center" className="w-56">
+                  <DropdownMenuItem onClick={exportFullDirectory} className="font-sans cursor-pointer">
+                    <Users className="mr-2 h-4 w-4" />
+                    <span>Full Member Directory</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={exportCPDReport} className="font-sans cursor-pointer">
+                    <Trophy className="mr-2 h-4 w-4" />
+                    <span>CPD Points Report</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Link href="/" className="block">
                 <Button
                   variant="outline"
