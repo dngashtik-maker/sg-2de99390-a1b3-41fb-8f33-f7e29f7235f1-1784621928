@@ -14,7 +14,7 @@ export function Navigation() {
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
             <img
-              src="/generated/ciarb-kenya-logo.png"
+              src="/ciarb-kenya-logo.jpg"
               alt="CIArb Kenya"
               className="h-10 w-auto"
             />
