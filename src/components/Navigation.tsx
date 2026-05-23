@@ -9,6 +9,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { LogIn, Mail, Lock, AlertCircle, User, Settings, LogOut, Shield } from "lucide-react";
 import { authService, type AuthUser } from "@/services/authService";
+import { NotificationBell } from "@/components/NotificationBell";
 import { useToast } from "@/hooks/use-toast";
 
 export function Navigation() {
@@ -133,51 +134,54 @@ export function Navigation() {
             </a>
 
             {currentUser ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="flex items-center gap-2 hover:bg-muted">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src={currentUser.member?.photoUrl || undefined} alt={currentUser.member?.name} />
-                      <AvatarFallback className="bg-accent text-white font-sans font-semibold">
-                        {currentUser.member?.name?.charAt(0) || currentUser.email.charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className="font-sans font-medium text-sm hidden md:inline">
-                      {currentUser.member?.name || currentUser.email}
-                    </span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel className="font-sans">
-                    <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">
-                        {currentUser.member?.name || "Member"}
-                      </p>
-                      <p className="text-xs leading-none text-muted-foreground">
-                        {currentUser.email}
-                      </p>
-                    </div>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  {currentUser.member && (
-                    <DropdownMenuItem onClick={() => router.push(`/members/${currentUser.member?.id}`)} className="font-sans cursor-pointer">
-                      <User className="mr-2 h-4 w-4" />
-                      <span>My Profile</span>
+              <div className="flex items-center gap-2">
+                <NotificationBell userId={currentUser.id} />
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="flex items-center gap-2 hover:bg-muted">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={currentUser.member?.photoUrl || undefined} alt={currentUser.member?.name} />
+                        <AvatarFallback className="bg-accent text-white font-sans font-semibold">
+                          {currentUser.member?.name?.charAt(0) || currentUser.email.charAt(0).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span className="font-sans font-medium text-sm hidden md:inline">
+                        {currentUser.member?.name || currentUser.email}
+                      </span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuLabel className="font-sans">
+                      <div className="flex flex-col space-y-1">
+                        <p className="text-sm font-medium leading-none">
+                          {currentUser.member?.name || "Member"}
+                        </p>
+                        <p className="text-xs leading-none text-muted-foreground">
+                          {currentUser.email}
+                        </p>
+                      </div>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {currentUser.member && (
+                      <DropdownMenuItem onClick={() => router.push(`/members/${currentUser.member?.id}`)} className="font-sans cursor-pointer">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>My Profile</span>
+                      </DropdownMenuItem>
+                    )}
+                    {currentUser.member?.isAdmin && (
+                      <DropdownMenuItem onClick={() => router.push("/admin/dashboard")} className="font-sans cursor-pointer">
+                        <Shield className="mr-2 h-4 w-4" />
+                        <span>Admin Dashboard</span>
+                      </DropdownMenuItem>
+                    )}
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleLogout} className="font-sans cursor-pointer text-red-600">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Sign Out</span>
                     </DropdownMenuItem>
-                  )}
-                  {currentUser.member?.isAdmin && (
-                    <DropdownMenuItem onClick={() => router.push("/admin/dashboard")} className="font-sans cursor-pointer">
-                      <Shield className="mr-2 h-4 w-4" />
-                      <span>Admin Dashboard</span>
-                    </DropdownMenuItem>
-                  )}
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} className="font-sans cursor-pointer text-red-600">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Sign Out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             ) : (
               <Button 
                 onClick={() => setIsLoginOpen(true)}
