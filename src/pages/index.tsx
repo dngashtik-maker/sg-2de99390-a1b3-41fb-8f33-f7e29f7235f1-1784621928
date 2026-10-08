@@ -252,7 +252,7 @@ export default function Home() {
             
             <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-primary"></div>
           </div>
-          <div className="relative container py-16 md:py-20" style={{ backgroundColor: "transparent", backgroundImage: "none" }}>
+          <div className="relative container py-16 md:py-20" style={{ backgroundColor: "#be0000", backgroundImage: "none" }}>
             <div className="max-w-3xl">
               <h1 className="font-sans font-bold text-4xl md:text-5xl text-white mb-4">
                 CIArb Kenya Branch Member Directory
